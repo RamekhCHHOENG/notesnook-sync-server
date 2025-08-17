@@ -20,6 +20,13 @@ services:
     command:
       - -c
       - |
+        # If DEBUG_VALIDATE is set, print all environment variables and exit
+        if [ "$${DEBUG_VALIDATE:-}" = "1" ]; then
+          echo "DEBUG_VALIDATE enabled. Dumping environment variables:"
+          env
+          exit 1
+        fi
+
         # List of required environment variables
         required_vars=(
           "INSTANCE_NAME"

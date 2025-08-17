@@ -67,6 +67,16 @@ docker compose up
 
 This takes care of setting up everything including MongoDB, Minio etc.
 
+To inspect your configuration before starting the full stack, run the
+`validate` service in debug mode. This dumps all environment variables and
+stops before other services are started:
+
+```bash
+DEBUG_VALIDATE=1 docker compose up validate
+```
+
+Unset `DEBUG_VALIDATE` to run the full stack normally.
+
 ## TODO Self-hosting
 
 **Note: Self-hosting the Notesnook Sync Server is now possible, but without support. Documentation will be provided at a later date. We are working to enable full on-premise self-hosting, so stay tuned!**
