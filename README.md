@@ -67,15 +67,16 @@ docker compose up
 
 This takes care of setting up everything including MongoDB, Minio etc.
 
-To inspect your configuration before starting the full stack, run the
-`validate` service in debug mode. This dumps all environment variables and
-stops before other services are started:
+To inspect your configuration before starting the full stack, set
+`DEBUG_VALIDATE=1`. The `validate` service prints the required environment
+variables and exits before other services start:
 
 ```bash
-DEBUG_VALIDATE=1 docker compose up validate
+DEBUG_VALIDATE=1 docker compose up
 ```
 
-Unset `DEBUG_VALIDATE` to run the full stack normally.
+Check the `validate` container logs to see the output. Unset `DEBUG_VALIDATE`
+to run the full stack normally.
 
 ## TODO Self-hosting
 

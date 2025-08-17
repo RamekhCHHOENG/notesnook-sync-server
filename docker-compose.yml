@@ -20,13 +20,6 @@ services:
     command:
       - -c
       - |
-        # If DEBUG_VALIDATE is set, print all environment variables and exit
-        if [ "$${DEBUG_VALIDATE:-}" = "1" ]; then
-          echo "DEBUG_VALIDATE enabled. Dumping environment variables:"
-          env
-          exit 1
-        fi
-
         # List of required environment variables
         required_vars=(
           "INSTANCE_NAME"
@@ -41,6 +34,15 @@ services:
           "MONOGRAPH_PUBLIC_URL"
           "ATTACHMENTS_SERVER_PUBLIC_URL"
         )
+
+        # If DEBUG_VALIDATE is set, dump required variables and exit
+        if [ "$${DEBUG_VALIDATE:-}" = "1" ]; then
+          echo "DEBUG_VALIDATE enabled. Dumping required environment variables:"
+          for var in "$${required_vars[@]}"; do
+            echo "$$var=$${!var}"
+          done
+          exit 1
+        fi
 
         # Check each required environment variable
         for var in "$${required_vars[@]}"; do
