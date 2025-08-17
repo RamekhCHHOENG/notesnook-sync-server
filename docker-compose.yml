@@ -144,6 +144,7 @@ services:
       <<: *server-discovery
       MONGODB_CONNECTION_STRING: mongodb://notesnook-db:27017/identity?replSet=rs0
       MONGODB_DATABASE_NAME: identity
+      ASPNETCORE_ENVIRONMENT: Development
 
   notesnook-server:
     image: streetwriters/notesnook-sync:latest
@@ -173,6 +174,7 @@ services:
       S3_SERVICE_URL: "${ATTACHMENTS_SERVER_PUBLIC_URL}"
       S3_REGION: "us-east-1"
       S3_BUCKET_NAME: "attachments"
+      ASPNETCORE_ENVIRONMENT: Development
 
   sse-server:
     image: streetwriters/sse:latest
@@ -192,6 +194,7 @@ services:
       start_period: 60s
     environment:
       <<: *server-discovery
+      ASPNETCORE_ENVIRONMENT: Development
 
   monograph-server:
     image: streetwriters/monograph:latest
